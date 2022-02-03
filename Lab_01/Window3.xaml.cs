@@ -54,7 +54,7 @@ namespace Lab_01
         private void Rem(object sender, RoutedEventArgs e)
         {
             string content = MainRect.Content.ToString();
-            MainRect.Content = content.Remove(content.Length - 1);
+            if (content.Length > 0) MainRect.Content = content.Remove(content.Length - 1);
         }
 
         private void ActionFunc(object sender, RoutedEventArgs e)

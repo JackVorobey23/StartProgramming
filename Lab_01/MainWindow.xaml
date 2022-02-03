@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_01"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" WindowStyle="None">
     <Grid Background="#FF2AABE4">
         <Button Content="FIRST WINDOW" Margin="69,73,0,0" VerticalAlignment="Top" Width="259" Height="61" Background="#FF9DC8E4" Foreground="White" FontSize="20" FontFamily="Microsoft JhengHei UI" HorizontalAlignment="Left" AutomationProperties.Name="First_Btn" Click="Button_Click"/>
         <Button Content="SECOND WINDOW" Margin="462,73,0,0" VerticalAlignment="Top" Width="262" Height="61" Background="#FF9DC8E4" Foreground="White" FontSize="20" FontFamily="Microsoft JhengHei UI" TextOptions.TextHintingMode="Fixed" HorizontalAlignment="Left" AutomationProperties.Name="Second_Btn" Click="Button_Click_1"/>
