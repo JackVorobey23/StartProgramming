@@ -1,0 +1,22 @@
+﻿<Window x:Class="Lab_01.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_01"
+        mc:Ignorable="d"
+        Title="Window1" Height="450" Width="800">
+    <Grid Background="#FF64E42A">
+        <Button Content="BACK TO MAIN" Margin="301,272,0,0" VerticalAlignment="Top" Width="183" Height="51" Background="#FF97EAA1" Foreground="White" FontSize="20" FontFamily="Microsoft JhengHei UI" TextOptions.TextHintingMode="Fixed" HorizontalAlignment="Left" Click="Exit_Btn_Click"/>
+        <Button Content="WRITE TO FILE" Margin="529,58,0,0" VerticalAlignment="Top" Width="183" Height="51" Background="#FF97EAA1" Foreground="White" FontSize="20" FontFamily="Microsoft JhengHei UI" TextOptions.TextHintingMode="Fixed" HorizontalAlignment="Left" Click="Write_Btn"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="36,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251" FontSize="18" Cursor="" SelectionOpacity="0" Background="#FFDCFFD5" Name="CreditBook"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="36,62,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251" FontSize="18" Cursor="" SelectionOpacity="0" Background="#FFDCFFD5" Name="FullName"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="36,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251" FontSize="18" Cursor="" SelectionOpacity="0" Background="#FFDCFFD5" Name="Data"/>
+        <Label Content="№ Залікової книжки" HorizontalAlignment="Left" Height="30" Margin="292,27,0,0" VerticalAlignment="Top" Width="192" FontSize="18" Foreground="#FF066600"/>
+        <Label Content="ПІП" HorizontalAlignment="Left" Height="30" Margin="292,62,0,0" VerticalAlignment="Top" Width="192" FontSize="18" Foreground="#FF066600"/>
+        <Label Content="Особисті дані" HorizontalAlignment="Left" Height="30" Margin="292,97,0,0" VerticalAlignment="Top" Width="192" FontSize="18" Foreground="#FF066600"/>
+        <TextBox HorizontalAlignment="Left" Height="30" Margin="36,203,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="251" FontSize="18" Cursor="" SelectionOpacity="0" Background="#FFDCFFD5" Name="CreditBookDlt"/>
+        <Label Content="№ Залікової книжки" HorizontalAlignment="Left" Height="30" Margin="292,203,0,0" VerticalAlignment="Top" Width="192" FontSize="18" Foreground="#FF066600"/>
+        <Button Content="DELETE DATA" Margin="529,194,0,0" VerticalAlignment="Top" Width="183" Height="51" Background="#FF97EAA1" Foreground="White" FontSize="20" FontFamily="Microsoft JhengHei UI" TextOptions.TextHintingMode="Fixed" HorizontalAlignment="Left" Click="Delete_Btn"/>
+    </Grid>
+</Window>

@@ -1,0 +1,117 @@
+﻿<Window x:Class="Lab_01.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_01"
+        mc:Ignorable="d"
+        Title="Window2" Height="600" Width="350">
+    <Grid Background="#FF852AE4">
+        <Button Content="BACK TO MAIN" Margin="77,507,84,0" VerticalAlignment="Top" Width="183" Height="51" Background="#FFCF97EA" Foreground="White" FontSize="20" FontFamily="Microsoft JhengHei UI" TextOptions.TextHintingMode="Fixed" HorizontalAlignment="Center" Click="Exit_Btn_Click" AutomationProperties.Name="Exit_Btn"/>
+        <ComboBox HorizontalAlignment="Left" Margin="40,27,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB1">
+            <TextBlock>X</TextBlock>
+            <TextBlock>O</TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="93,27,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB2">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="146,27,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB3">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="199,27,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB4">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="252,27,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB5">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="40,82,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB6">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="93,82,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB7">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="146,82,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB8">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="199,82,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB9">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="252,82,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB10">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="40,137,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB11">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="93,137,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB12">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="146,137,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB13">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="199,137,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB14">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="252,137,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB15">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="40,192,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB16">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="93,192,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB17">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="146,192,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB18">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="199,192,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB19">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="252,192,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB20">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="40,247,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB21">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="93,247,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB22">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="146,247,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB23">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="199,247,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB24">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="252,247,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB25">
+            <TextBlock><Run Text="X"/></TextBlock>
+            <TextBlock><Run Text="O"/></TextBlock>
+        </ComboBox>
+        <Label Content="Winner: " HorizontalAlignment="Left" Height="50" Margin="40,357,0,0" VerticalAlignment="Top" Width="160" FontSize="36" Foreground="#FFF0ACFF"/>
+        <Button Content="RESTART" Margin="77,438,84,0" VerticalAlignment="Top" Width="183" Height="51" Background="#FFCF97EA" Foreground="White" FontSize="20" FontFamily="Microsoft JhengHei UI" TextOptions.TextHintingMode="Fixed" HorizontalAlignment="Center" Click="Restart_Click"/>
+        <Label Content="" HorizontalAlignment="Left" Height="50" Margin="199,357,0,0" VerticalAlignment="Top" Width="93" FontSize="36" Foreground="#FFF0ACFF" Name="Winner"/>
+        <Label Content="Turn:" HorizontalAlignment="Left" Height="50" Margin="40,302,0,0" VerticalAlignment="Top" Width="160" FontSize="36" Foreground="#FFF0ACFF"/>
+        <Label Content="X" HorizontalAlignment="Left" Height="50" Margin="124,302,0,0" VerticalAlignment="Top" Width="93" FontSize="36" Foreground="#FFF0ACFF" Name="Turn"/>
+    </Grid>
+</Window>

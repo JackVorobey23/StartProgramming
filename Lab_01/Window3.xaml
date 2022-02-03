@@ -1,0 +1,35 @@
+﻿<Window x:Class="Lab_01.Window3"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab_01"
+        mc:Ignorable="d"
+        Title="Window3" Height="680" Width="510">
+    <Grid Background="#FFE4B62A">
+        <Button Content="BACK TO MAIN" Margin="155,571,0,0" VerticalAlignment="Top" Width="183" Height="51" Background="#FFEAC797" Foreground="White" FontSize="20" FontFamily="Microsoft JhengHei UI" TextOptions.TextHintingMode="Fixed" HorizontalAlignment="Left" Click="Exit_Btn_Click" AutomationProperties.Name="Exit_Btn"/>
+        <Button Content="" HorizontalAlignment="Left" Height="80" Margin="13,126,0,0" VerticalAlignment="Top" Width="114" FontSize="40"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="111" Stroke="Black" VerticalAlignment="Top" Width="474" Margin="10,10,0,0"/>
+        <Button Content="=" Click="ActionFunc" HorizontalAlignment="Left" Height="80" Margin="132,126,0,0" VerticalAlignment="Top" Width="114" FontSize="40" Background="#FFEEC58D"/>
+        <Button Content="C" HorizontalAlignment="Left" Height="80" Margin="251,126,0,0" VerticalAlignment="Top" Width="114" FontSize="40" Background="#FFFF9C9C" Click="Clean"/>
+        <Button Content="⌫" Click="Rem" HorizontalAlignment="Left" Height="80" Margin="370,126,0,0" VerticalAlignment="Top" Width="114" FontSize="40" Background="#FFF9FF65"/>
+        <Button Content="7" Click="NumBtn" HorizontalAlignment="Left" Height="80" Margin="13,211,0,0" VerticalAlignment="Top" Width="114" FontSize="40"/>
+        <Button Content="8" Click="NumBtn" HorizontalAlignment="Left" Height="80" Margin="132,211,0,0" VerticalAlignment="Top" Width="114" FontSize="40"/>
+        <Button Content="9" Click="NumBtn" HorizontalAlignment="Left" Height="80" Margin="251,211,0,0" VerticalAlignment="Top" Width="114" FontSize="40"/>
+        <Button Content="÷" Click="ActionFunc" HorizontalAlignment="Left" Height="80" Margin="370,211,0,0" VerticalAlignment="Top" Width="114" FontSize="50"/>
+        <Button Content="4" Click="NumBtn" HorizontalAlignment="Left" Height="80" Margin="13,296,0,0" VerticalAlignment="Top" Width="114" FontSize="40"/>
+        <Button Content="5" Click="NumBtn" HorizontalAlignment="Left" Height="80" Margin="132,296,0,0" VerticalAlignment="Top" Width="114" FontSize="40"/>
+        <Button Content="6" Click="NumBtn" HorizontalAlignment="Left" Height="80" Margin="251,296,0,0" VerticalAlignment="Top" Width="114" FontSize="40"/>
+        <Button Content="x" Click="ActionFunc" HorizontalAlignment="Left" Height="80" Margin="370,296,0,0" VerticalAlignment="Top" Width="114" FontSize="45"/>
+        <Button Content="1" Click="NumBtn" HorizontalAlignment="Left" Height="80" Margin="13,381,0,0" VerticalAlignment="Top" Width="114" FontSize="40"/>
+        <Button Content="2" Click="NumBtn" HorizontalAlignment="Left" Height="80" Margin="132,381,0,0" VerticalAlignment="Top" Width="114" FontSize="40"/>
+        <Button Content="3" Click="NumBtn" HorizontalAlignment="Left" Height="80" Margin="251,381,0,0" VerticalAlignment="Top" Width="114" FontSize="40"/>
+        <Button Content="-" Click="ActionFunc" HorizontalAlignment="Left" Height="80" Margin="370,381,0,0" VerticalAlignment="Top" Width="114" FontSize="55"/>
+        <Button Content="" HorizontalAlignment="Left" Height="80" Margin="13,466,0,0" VerticalAlignment="Top" Width="114" FontSize="40"/>
+        <Button Content="0" Click="NumBtn" HorizontalAlignment="Left" Height="80" Margin="132,466,0,0" VerticalAlignment="Top" Width="114" FontSize="40"/>
+        <Button Content="," Click="NumBtn" HorizontalAlignment="Left" Height="80" Margin="251,466,0,0" VerticalAlignment="Top" Width="114" FontSize="40"/>
+        <Button Content="+" Click="ActionFunc" HorizontalAlignment="Left" Height="80" Margin="370,466,0,0" VerticalAlignment="Top" Width="114" FontSize="55"/>
+        <Label Content="" HorizontalAlignment="Left" Height="69" Margin="13,52,0,0" VerticalAlignment="Top" Width="471" FontSize="48" HorizontalContentAlignment="Right" Name="MainRect"/>
+        <Label Content="" HorizontalAlignment="Left" Height="42" Margin="13,10,0,0" VerticalAlignment="Top" Width="471" FontSize="24" HorizontalContentAlignment="Right" Name="SmallRect"/>
+    </Grid>
+</Window>
