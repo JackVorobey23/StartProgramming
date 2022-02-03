@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_01"
         mc:Ignorable="d"
-        Title="Window3" Height="680" Width="510">
+        Title="Window3" Height="680" Width="510" WindowStyle="None">
     <Grid Background="#FFE4B62A">
         <Button Content="BACK TO MAIN" Margin="155,571,0,0" VerticalAlignment="Top" Width="183" Height="51" Background="#FFEAC797" Foreground="White" FontSize="20" FontFamily="Microsoft JhengHei UI" TextOptions.TextHintingMode="Fixed" HorizontalAlignment="Left" Click="Exit_Btn_Click" AutomationProperties.Name="Exit_Btn"/>
         <Button Content="" HorizontalAlignment="Left" Height="80" Margin="13,126,0,0" VerticalAlignment="Top" Width="114" FontSize="40"/>

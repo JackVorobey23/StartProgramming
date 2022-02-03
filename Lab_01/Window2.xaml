@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab_01"
         mc:Ignorable="d"
-        Title="Window2" Height="600" Width="350">
+        Title="Window2" Height="600" Width="350" WindowStyle="None">
     <Grid Background="#FF852AE4">
         <Button Content="BACK TO MAIN" Margin="77,507,84,0" VerticalAlignment="Top" Width="183" Height="51" Background="#FFCF97EA" Foreground="White" FontSize="20" FontFamily="Microsoft JhengHei UI" TextOptions.TextHintingMode="Fixed" HorizontalAlignment="Center" Click="Exit_Btn_Click" AutomationProperties.Name="Exit_Btn"/>
         <ComboBox HorizontalAlignment="Left" Margin="40,27,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB1" FontSize="28" Tag="1">

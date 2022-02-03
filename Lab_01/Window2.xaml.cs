@@ -39,13 +39,6 @@ namespace Lab_01
                            { CB21.SelectedIndex, CB22.SelectedIndex, CB23.SelectedIndex, CB24.SelectedIndex, CB25.SelectedIndex } 
             };
             Winner.Content = LinesCheck(area);
-            if(Winner.Content.ToString() != "")
-            {
-                for(int i = 1; i <= 25; i++)
-                {
-                    
-                }
-            }
             Turn.Content = ChangeTurn(Turn.Content.ToString());
         }
         static string ChangeTurn(string input)
@@ -91,7 +84,6 @@ namespace Lab_01
                 if (countero >= 4) return "O"; if (counterx >= 4) return "X";
             }
             countero = counterx = 0;
-            //sadasdasd
             for (int i = 1; i < 5; i++)
             {
                 if (area[i, i - 1] == 0) counterx++; if (area[i, i - 1] == 1) countero++;
@@ -104,7 +96,6 @@ namespace Lab_01
                 if (countero >= 4) return "O"; if (counterx >= 4) return "X";
             }
             countero = counterx = 0;
-            //asdasdasd
             for (int i = 0; i < 4; i++)
             {
                 if (area[i, 3 - i] == 0) counterx++; if (area[i, 3 - i] == 1) countero++;
@@ -122,9 +113,9 @@ namespace Lab_01
 
         private void Restart_Click(object sender, RoutedEventArgs e)
         {
-            Window2 mw = new Window2();
+            Window2 w2 = new Window2();
             Hide();
-            mw.Show();
+            w2.Show();
         }
     }
 }
