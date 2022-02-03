@@ -41,12 +41,8 @@ namespace Lab_01
             Winner.Content = LinesCheck(area);
             Turn.Content = ChangeTurn(Turn.Content.ToString());
             if (Winner.Content.ToString() != "")
-            {
-                foreach (ComboBox cb in this.myGrid.Children)
-                {
-                    cb.IsEnabled = false;
-                }
-            }
+                foreach (ComboBox b in this.myGrid.Children.OfType<ComboBox>())
+                    b.IsEnabled = false;
         }
         static string ChangeTurn(string input)
         {
