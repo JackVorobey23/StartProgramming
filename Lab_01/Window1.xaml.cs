@@ -70,5 +70,30 @@ namespace Lab_01
                 }
             }
         }
+        private void Check_Btn(object sender, RoutedEventArgs e)
+        {
+            StreamReader check = new StreamReader("StudentData.txt");
+            if (CheckBtn.Content.ToString() == "CHECK DATA")
+            {
+                CreditBook.Visibility = Data.Visibility = FullName.Visibility = 
+                CreditBookDlt.Visibility = Label1.Visibility = Label2.Visibility = 
+                Label3.Visibility = Label4.Visibility = Visibility.Hidden;
+                WriteDataBtn.IsEnabled = DeleteDataBtn.IsEnabled = false;
+                CheckDataLabel.Visibility = Visibility.Visible;
+                CheckDataLabel.Text = check.ReadToEnd();
+                check.Close();
+                CheckBtn.Content = "STOP CHECKING";
+            }
+            else if (CheckBtn.Content.ToString() == "STOP CHECKING")
+            {
+                CreditBook.Visibility = Data.Visibility = FullName.Visibility =
+                CreditBookDlt.Visibility = Label1.Visibility = Label2.Visibility =
+                Label3.Visibility = Label4.Visibility = Visibility.Visible;
+                WriteDataBtn.IsEnabled = DeleteDataBtn.IsEnabled = true;
+                CheckDataLabel.Visibility = Visibility.Hidden;
+                CheckDataLabel.Text = "";
+                CheckBtn.Content = "CHECK DATA";
+            }
+        }
     }
 }

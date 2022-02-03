@@ -39,6 +39,13 @@ namespace Lab_01
                            { CB21.SelectedIndex, CB22.SelectedIndex, CB23.SelectedIndex, CB24.SelectedIndex, CB25.SelectedIndex } 
             };
             Winner.Content = LinesCheck(area);
+            if(Winner.Content.ToString() != "")
+            {
+                for(int i = 1; i <= 25; i++)
+                {
+                    
+                }
+            }
             Turn.Content = ChangeTurn(Turn.Content.ToString());
         }
         static string ChangeTurn(string input)
