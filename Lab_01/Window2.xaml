@@ -6,12 +6,13 @@
         xmlns:local="clr-namespace:Lab_01"
         mc:Ignorable="d"
         Title="Window2" Height="600" Width="350" WindowStyle="None">
-    <Grid Background="#FF852AE4">
-        <Button Content="BACK TO MAIN" Margin="77,507,84,0" VerticalAlignment="Top" Width="183" Height="51" Background="#FFCF97EA" Foreground="White" FontSize="20" FontFamily="Microsoft JhengHei UI" TextOptions.TextHintingMode="Fixed" HorizontalAlignment="Center" Click="Exit_Btn_Click" AutomationProperties.Name="Exit_Btn"/>
+    <Grid Name="myGrid" Background="#FF852AE4">
         <ComboBox HorizontalAlignment="Left" Margin="40,27,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB1" FontSize="28" Tag="1">
             <TextBlock>X</TextBlock>
             <TextBlock>O</TextBlock>
         </ComboBox>
+        <Button Content="BACK TO MAIN" Margin="77,507,84,0" VerticalAlignment="Top" Width="183" Height="51" Background="#FFCF97EA" Foreground="White" FontSize="20" FontFamily="Microsoft JhengHei UI" TextOptions.TextHintingMode="Fixed" HorizontalAlignment="Center" Click="Exit_Btn_Click" AutomationProperties.Name="Exit_Btn"/>
+        
         <ComboBox HorizontalAlignment="Left" Margin="93,27,0,0" VerticalAlignment="Top" Width="48" Height="50" SelectionChanged="FuncAfterClose" Name="CB2" FontSize="28" Tag="2">
             <TextBlock><Run Text="X"/></TextBlock>
             <TextBlock><Run Text="O"/></TextBlock>
