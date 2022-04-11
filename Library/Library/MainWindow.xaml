@@ -1,0 +1,1010 @@
+﻿<Window x:Class="Library.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1000"
+        Background="Transparent" WindowStyle="None" ResizeMode="NoResize"
+        AllowsTransparency="True">
+    <Window.Resources>
+        <Style x:Key="MenuButton" TargetType="RadioButton">
+            <Setter Property="Foreground" Value="#FFC2C2C2"></Setter>
+            <Setter Property="Background" Value="#00FFFFFF"></Setter>
+            <Setter Property="Padding" Value="0,0,0,0"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Foreground" Value="#C9D5FF"/>
+                    <Setter Property="Background" Value="#37284E"/>
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Foreground" Value="#FFE977"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="MenuRectangle" TargetType="Rectangle">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="StrokeThickness" Value="30"/>
+                    <Setter Property="Stroke" Value="#66F17777"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="Genre_Button" TargetType="Border">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="BorderBrush" Value="#FFA0A0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Border x:Name="Menu" CornerRadius="40" Background="#293052">
+            <Grid>
+                <Button Background="#FF5555" Height="25" Margin="950,14,25,0" VerticalAlignment="Top" Width="25" BorderThickness="0,0,0,0" Click="Close_Btn"/>
+                <Button Background="#FFC3C3C3" Height="25" Margin="915,14,60,0" VerticalAlignment="Top" Width="25" BorderThickness="0,0,0,0" Click="MinButton_Click"/>
+                <Border Background="#1B1E39" Width="200" Margin="0,0,800,0" CornerRadius="40,0,0,40">
+                    <Grid>
+                        <Rectangle Stroke="#483367" Margin="0,101,0,498"/>
+                        <Label Content="Меню" Margin="31,49,79,520" Padding="0,0,0,0" FontSize="28" Foreground="#FFE1FFFD"/>
+                        <Rectangle Name="Rect_1" Visibility="Hidden" Fill="#CC282C54" Margin="0,155,0,387"/>
+                        <Rectangle Name="Rect_2" Visibility="Hidden" Fill="#CC282C54" Margin="0,213,0,329"/>
+                        <Rectangle Name="Rect_3" Visibility="Hidden" Fill="#CC282C54" Margin="0,271,0,271"/>
+                        <RadioButton Checked="RB_Checked" Name="RB_1" MouseEnter="RadioButton_MouseEnter" MouseLeave="RadioButton_MouseLeave" Style="{StaticResource MenuButton}" Content="Читач" Margin="-85,155,0,0" UseLayoutRounding="False" BorderThickness="0,0,0,0" FontSize="24" HorizontalContentAlignment="Center" VerticalAlignment="Top" Height="58" HorizontalAlignment="Left" Width="285" VerticalContentAlignment="Center"/>
+                        <RadioButton Checked="RB_Checked" Name="RB_2" MouseEnter="RadioButton_MouseEnter" MouseLeave="RadioButton_MouseLeave" Style="{StaticResource MenuButton}" Content="Бібліотекар" Margin="-24,213,0,329" UseLayoutRounding="False" BorderThickness="0,0,0,0" FontSize="24" HorizontalContentAlignment="Center" Height="58" HorizontalAlignment="Left" Width="224" VerticalContentAlignment="Center" />
+                        <RadioButton Checked="RB_Checked" Name="RB_3" MouseEnter="RadioButton_MouseEnter" MouseLeave="RadioButton_MouseLeave" Style="{StaticResource MenuButton}" Content="Дані" Margin="-98,271,0,271" UseLayoutRounding="False" BorderThickness="0,0,0,0" FontSize="24" HorizontalContentAlignment="Center" Height="58" HorizontalAlignment="Left" Width="298" VerticalContentAlignment="Center" />
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+        <Border x:Name="Book_Find" CornerRadius="40" Background="#1B1E39" RenderTransformOrigin="0.5,0.5" Margin="-807,48,1047,48">
+            <Grid Name="BF_Grid">
+                <Border Margin="622,18,61,427" Background="#FF353B70" CornerRadius="10" MouseLeftButtonDown="ProfileBorder_Click" MouseEnter="ProfileBorder_MouseEnter" MouseLeave="ProfileBorder_MouseLeave">
+                    <Image Source="profile.png"></Image>
+                </Border>
+                <Label Content="Пошук книги" Margin="0,18,0,0" Padding="0,0,0,0" FontSize="32" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="217"/>
+                <Grid Margin="18,97,407,369">
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                    <Label Name="TitleSearch_Label" Content="За назвою..." Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="318" Height="38" FontStyle="Italic" FontWeight="ExtraLight" Margin="10,0,0,0"/>
+                    <TextBox TextChanged="TitleSearch_TextChanged" Name="TitleSearch" Text="" BorderBrush="Transparent" Padding="10,1,0,0" HorizontalAlignment="Left" Height="38" TextWrapping="Wrap" VerticalAlignment="Top" Width="335" Background="Transparent" Foreground="#FF6F7DC6" FontSize="25" FontStyle="Normal" FontStretch="Normal" FontWeight="Light"/>
+                </Grid>
+                <Grid Margin="407,97,18,369">
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                    <Label Name="CiphreSearch_Label" Content="За шифром..." Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="318" Height="38" FontStyle="Italic" FontWeight="ExtraLight" Margin="10,0,0,0"/>
+                    <TextBox TextChanged="CiphreSearch_TextChanged" Name="CiphreSearch" Text="" BorderBrush="Transparent" Padding="10,1,0,0" HorizontalAlignment="Left" Height="38" TextWrapping="Wrap" VerticalAlignment="Top" Width="335" Background="Transparent" Foreground="#FF6F7DC6" FontSize="25" FontStyle="Normal" FontStretch="Normal" FontWeight="Light"/>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border x:Name="Profile_Login" CornerRadius="40" Background="#1B1E39" RenderTransformOrigin="0.5,0.5" Margin="-545,-373,1047,577">
+            <Grid>
+                <Grid Margin="112,264,112,93">
+                    <Label Content="Увійти" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="39" FontStyle="Normal" FontWeight="UltraLight"/>
+                    <Border MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" MouseLeftButtonDown="Login_Button_Click" Name="Login_Button" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Label Content="Вхід до профілю" Margin="0,18,0,0" Padding="0,0,0,0" FontSize="32" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="258"/>
+                <Grid Margin="41,103,41,241">
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                    <Label Name="LoginTicket_Label" Content="Номер читацького квитка" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="318" Height="38" FontStyle="Italic" FontWeight="ExtraLight" Margin="10,0,0,0"/>
+                    <TextBox TextChanged="LoginTicket_TextChanged" Name="LoginTicket" Text="" BorderBrush="Transparent" Padding="10,0,0,0" HorizontalAlignment="Center" Height="52" TextWrapping="Wrap" VerticalAlignment="Center" Width="416" Background="Transparent" Foreground="#FF6F7DC6" FontSize="25" FontStyle="Normal" FontStretch="Normal" FontWeight="Light"/>
+                </Grid>
+                <Grid Margin="41,183,41,161">
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                    <Label Name="LoginPass_Label" Content="Пароль" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="318" Height="38" FontStyle="Italic" FontWeight="ExtraLight" Margin="10,0,0,0"/>
+                    <TextBox TextChanged="LoginPass_TextChanged" Name="LoginPass" Text="" BorderBrush="Transparent" Padding="10,0,0,0" HorizontalAlignment="Center" Height="52" TextWrapping="Wrap" VerticalAlignment="Center" Width="416" Background="Transparent" Foreground="#FF6F7DC6" FontSize="25" FontStyle="Normal" FontStretch="Normal" FontWeight="Light"/>
+                </Grid>
+                <Label Content="Не маєте аккаунту бібліотеки? - " Padding="0,0,0,0" FontSize="19" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" Width="288" Height="34" FontStyle="Italic" FontWeight="ExtraLight" Margin="0,318,0,0"/>
+                <Label Content="реєстрація" Padding="0,0,0,0" MouseLeftButtonDown="Register_Click" FontSize="19" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="86" Height="26" FontStyle="Normal" FontWeight="Light" Margin="105,343,0,0" FontStretch="Normal" BorderBrush="#FF6F7DC6" BorderThickness="0,0,0,1" Cursor="Hand"/>
+                <Grid Margin="49,320,403,30">
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,16,21,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,26,21,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,16,11,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,26,11,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF6F7DC6" RadiusX="35.733" RadiusY="35.733" Grid.Row="1" StrokeThickness="2" Fill="#268DF3FF" MouseLeftButtonDown="BackToBtn_Click" MouseEnter="BackBtn_MouseEnter" MouseLeave="BackBtn_MouseLeave"/>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border x:Name="Profile_Register" CornerRadius="40" Background="#1B1E39" RenderTransformOrigin="0.5,0.5" Margin="761,-439,-447,649">
+            <Grid Margin="12,0,-12,-57">
+                <Label Content="Реєстрація" Margin="0,10,0,0" Padding="0,0,0,0" FontSize="32" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="258"/>
+                <Grid Margin="223,73,41,346">
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                    <TextBox Name="RegPassport" Text="" BorderBrush="Transparent" Padding="10,0,0,0" HorizontalAlignment="Center" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="421" Background="Transparent" Foreground="#FF6F7DC6" FontSize="22" FontStyle="Normal" FontStretch="Normal" FontWeight="Light" Margin="0,-3,0,0"/>
+                </Grid>
+                <Grid Margin="114,114,41,305">
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                    <TextBox Name="RegAddress" Text="" BorderBrush="Transparent" Padding="10,0,0,0" HorizontalAlignment="Center" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="530" Background="Transparent" Foreground="#FF6F7DC6" FontSize="22" FontStyle="Normal" FontStretch="Normal" FontWeight="Light" Margin="0,-3,0,0"/>
+                </Grid>
+                <Grid Margin="133,157,280,262">
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                    <TextBox Name="RegSurname" Text="" BorderBrush="Transparent" Padding="10,0,0,0" HorizontalAlignment="Center" Height="30" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" Background="Transparent" Foreground="#FF6F7DC6" FontSize="22" FontStyle="Normal" FontStretch="Normal" FontWeight="Light" Margin="0,-3,0,0"/>
+                </Grid>
+                <Grid Margin="495,157,41,262">
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                    <Label Name="RegEducation" Content="Початкова" Padding="0,0,0,0" FontSize="25" Foreground="#FF86A9E0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="113" Height="33" FontStyle="Normal" FontWeight="UltraLight" Margin="10,-5,0,0"/>
+                </Grid>
+                <Grid Margin="248,200,165,219">
+                    <Label Content="+" Padding="0,0,0,0" FontSize="25" Foreground="#64A8BAFF" HorizontalAlignment="Left" VerticalAlignment="Center" Width="17" Height="28" FontStyle="Normal" FontWeight="ExtraLight" Margin="-17,0,0,0" FontFamily="Cascadia Mono ExtraLight"/>
+
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                    <Label Name="NumExample_Label" Content="380 XXХ-XXX-XXX" Padding="0,0,0,0" FontSize="25" Foreground="#64A8BAFF" HorizontalAlignment="Left" VerticalAlignment="Center" Width="262" Height="28" FontStyle="Normal" FontWeight="ExtraLight" Margin="10,0,0,0" FontFamily="Cascadia Mono ExtraLight"/>
+                    <TextBox TextChanged="RegTeleNum_TextChanged" Name="RegTeleNum" Text="" Background="Transparent" Padding="1,0,0,0" FontSize="25" Foreground="#64A8BAFF" HorizontalAlignment="Left" VerticalAlignment="Center" Width="265" Height="28" FontStyle="Normal" FontWeight="ExtraLight" Margin="7,0,0,0" FontFamily="Cascadia Mono ExtraLight" BorderThickness="0,0,0,0"/>
+                </Grid>
+                <Grid Margin="625,157,41,262">
+                    <Rectangle Margin="6,14,7,7" RenderTransformOrigin="0.5,0.5">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
+                                <GradientStop Color="Transparent" Offset="0.5"/>
+                                <GradientStop Color="#7F8D91FF" Offset="0.5"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="315"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Margin="6,7,7,14" RenderTransformOrigin="0.5,0.5">
+                        <Rectangle.Fill>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="1,0">
+                                <GradientStop Color="Transparent" Offset="0.5"/>
+                                <GradientStop Color="#7F8D91FF" Offset="0.5"/>
+                            </LinearGradientBrush>
+                        </Rectangle.Fill>
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="135"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Border MouseEnter="RegEducation_MouseEnter" MouseLeave="RegEducation_MouseLeave" MouseDown="EduChange_Click" Background="#268D91FF" CornerRadius="0,4,0,0" Margin="0,0,0,14"/>
+                    <Border MouseEnter="RegEducation_MouseEnter" MouseLeave="RegEducation_MouseLeave" MouseDown="EduChange_Click" Background="#268D91FF" CornerRadius="0,0,4,0" Margin="0,14,0,0"/>
+                </Grid>
+                <Grid Margin="223,243,290,176">
+                    <Label Content="Присутній" HorizontalContentAlignment="Center" Padding="0,0,0,0" FontSize="23" Foreground="#FF86A9E0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="172" Height="33" FontStyle="Normal" FontWeight="UltraLight" Margin="0,-5,0,0"/>
+                    <Border MouseLeftButtonDown="RegDegree_Click" MouseEnter="RegEducation_MouseEnter" MouseLeave="RegEducation_MouseLeave" Name="RegDegree_Enable" Background="#26FF71DD" CornerRadius="4" BorderBrush="#3FFF4876" BorderThickness="1,1,1,1"/>
+                </Grid>
+                <Grid Margin="426,243,87,176">
+                    <Label Content="Відсутній" HorizontalContentAlignment="Center" Padding="0,0,0,0" FontSize="23" Foreground="#FF86A9E0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="172" Height="33" FontStyle="Normal" FontWeight="UltraLight" Margin="0,-5,0,0"/>
+                    <Border MouseLeftButtonDown="RegDegree_Click" MouseEnter="RegEducation_MouseEnter" MouseLeave="RegEducation_MouseLeave" Name="RegDegree_Disable" Background="#268D91FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Grid Margin="323,286,190,133">
+                    <Label Name="RegBD_Label" Content="00" Padding="0,0,0,0" FontSize="25" Foreground="#64A8BAFF" HorizontalAlignment="Left" VerticalAlignment="Center" Width="29" Height="28" FontStyle="Normal" FontWeight="ExtraLight" Margin="7,0,0,0" FontFamily="Cascadia Mono ExtraLight"/>
+                    <Border Background="#268D91FF" CornerRadius="4" BorderBrush="#3FFF4876" Margin="4,0,133,0"/>
+                    <Label Name="RegBM_Label" Content="00" Padding="0,0,0,0" FontSize="25" Foreground="#64A8BAFF" HorizontalAlignment="Left" VerticalAlignment="Center" Width="29" Height="28" FontStyle="Normal" FontWeight="ExtraLight" Margin="51,0,0,0" FontFamily="Cascadia Mono ExtraLight"/>
+                    <Border Background="#268D91FF" CornerRadius="4" BorderBrush="#3FFF4876" Margin="48,0,89,0"/>
+                    <Label Name="RegBY_Label" Content="0000" Padding="0,0,0,0" FontSize="25" Foreground="#64A8BAFF" HorizontalAlignment="Left" VerticalAlignment="Center" Width="58" Height="28" FontStyle="Normal" FontWeight="ExtraLight" Margin="95,0,0,0" FontFamily="Cascadia Mono ExtraLight"/>
+                    <Border Background="#268D91FF" CornerRadius="4" BorderBrush="#3FFF4876" Margin="92,0,15,0"/>
+                    <TextBox Name="RegBD" TextChanged="RegBD_TextChanged" Text="" Background="Transparent" Padding="1,0,0,0" FontSize="25" Foreground="#64A8BAFF" HorizontalAlignment="Left" VerticalAlignment="Center" Width="35" Height="28" FontStyle="Normal" FontWeight="ExtraLight" Margin="4,0,0,0" FontFamily="Cascadia Mono ExtraLight" BorderThickness="0,0,0,0"/>
+                    <TextBox Name="RegBM" TextChanged="RegBD_TextChanged" Text="" Background="Transparent" Padding="1,0,0,0" FontSize="25" Foreground="#64A8BAFF" HorizontalAlignment="Left" VerticalAlignment="Center" Width="35" Height="28" FontStyle="Normal" FontWeight="ExtraLight" Margin="48,0,0,0" FontFamily="Cascadia Mono ExtraLight" BorderThickness="0,0,0,0"/>
+                    <TextBox Name="RegBY" TextChanged="RegBD_TextChanged" Text="" Background="Transparent" Padding="1,0,0,0" FontSize="25" Foreground="#64A8BAFF" HorizontalAlignment="Left" VerticalAlignment="Center" Width="65" Height="28" FontStyle="Normal" FontWeight="ExtraLight" Margin="92,0,0,0" FontFamily="Cascadia Mono ExtraLight" BorderThickness="0,0,0,0"/>
+
+                </Grid>
+                <Label Content="Номер паспорту:" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="208" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="10,71,0,0"/>
+                <Label Content="Адреса:" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="104" Height="38" FontStyle="Normal" FontWeight="Normal" Margin="10,109,0,0"/>
+                <Label Content="Прізвище:" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="123" Height="38" FontStyle="Normal" FontWeight="Normal" Margin="10,152,0,0"/>
+                <Label Content="Освіта:" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="38" FontStyle="Normal" FontWeight="Normal" Margin="410,152,0,0"/>
+                <Label Content="Номер телефону:" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="208" Height="38" FontStyle="Normal" FontWeight="Normal" Margin="10,195,0,0"/>
+                <Label Content="Науковий ступінь" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="208" Height="38" FontStyle="Normal" FontWeight="Normal" Margin="10,238,0,0"/>
+                <Label Content="Дата народження(д/м/р)" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="299" Height="38" FontStyle="Normal" FontWeight="Normal" Margin="10,281,0,0"/>
+                <Grid Margin="101,328,384,69">
+                    <Label Content="Зареєструватись" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0,0,0,0" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="55" FontStyle="Normal" FontWeight="UltraLight" Margin="0,-5,0,0"/>
+                    <Border MouseLeftButtonDown="RegisterProfile_Click" MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" Name="RegFinish" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <TextBlock TextWrapping="Wrap" Padding="0,0,0,0" FontSize="18" Foreground="#66FF8C8C" HorizontalAlignment="Left" VerticalAlignment="Top" Width="299" Height="50" FontStyle="Italic" FontWeight="Thin" Margin="345,328,0,0"><Run Text="*"/><Run Language="uk-ua" Text="Правильно з"/><Run Text="аповніть всі поля для можливості завершення реєстрації"/></TextBlock>
+                <Grid Margin="10,330,629,71">
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,16,21,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,26,21,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,16,11,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,26,11,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF6F7DC6" RadiusX="35.733" RadiusY="35.733" Grid.Row="1" StrokeThickness="2" Fill="#268DF3FF" MouseLeftButtonDown="BackToBtn_Click" MouseEnter="BackBtn_MouseEnter" MouseLeave="BackBtn_MouseLeave"/>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border x:Name="Profile_About" CornerRadius="40" Background="#1B1E39" RenderTransformOrigin="0.5,0.5" Margin="500,654,-185,-444">
+            <Grid>
+                <Label Content="Профіль" Margin="0,10,0,0" Padding="0,0,0,0" FontSize="32" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="217"/>
+                <Grid Margin="429,15,60,342" >
+                    <Label Name="SurnameProfile_Label" Content="Прізвище" Padding="0" FontSize="25" Foreground="#64A8BAFF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="196" Height="28" FontStyle="Normal" FontWeight="ExtraLight" FontFamily="Cascadia Mono ExtraLight" HorizontalContentAlignment="Center"/>
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                </Grid>
+                <Grid Margin="401,71,60,234" x:Name="HallChange_Grid" Visibility="Hidden">
+                    <Label Content="Обрати зал" Padding="0" FontSize="19" Foreground="#64A8BAFF" HorizontalAlignment="Center" VerticalAlignment="Top" Width="196" Height="23" FontStyle="Normal" FontWeight="ExtraLight" FontFamily="Cascadia Mono ExtraLight" HorizontalContentAlignment="Center"/>
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                    <Border MouseEnter="RegEducation_MouseEnter" MouseLeave="RegEducation_MouseLeave" Background="#268D91FF" CornerRadius="4,0,0,0" Margin="0,23,112,31">
+                        <Label Name="LabelHall_1" Content="1 (99 ос.)" MouseLeftButtonDown="HallChange_Click" Padding="0" FontSize="14" Foreground="#64A8BAFF" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="112" Height="31" FontStyle="Normal" FontWeight="ExtraLight" FontFamily="Cascadia Mono ExtraLight" HorizontalContentAlignment="Center"/>
+                    </Border>
+                    <Border MouseEnter="RegEducation_MouseEnter" MouseLeave="RegEducation_MouseLeave" Background="#268D91FF" CornerRadius="0,4,0,0" Margin="112,23,0,31">
+                        <Label Name="LabelHall_2" Content="2 (99 ос.)" MouseLeftButtonDown="HallChange_Click" Padding="0" FontSize="14" Foreground="#64A8BAFF" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="112" Height="31" FontStyle="Normal" FontWeight="ExtraLight" FontFamily="Cascadia Mono ExtraLight" HorizontalContentAlignment="Center"/>
+                    </Border>
+                    <Border MouseEnter="RegEducation_MouseEnter" MouseLeave="RegEducation_MouseLeave" Background="#268D91FF" CornerRadius="0,0,0,4" Margin="0,54,112,0">
+                        <Label Name="LabelHall_3" Content="3 (99 ос.)" MouseLeftButtonDown="HallChange_Click" Padding="0" FontSize="14" Foreground="#64A8BAFF" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="112" Height="31" FontStyle="Normal" FontWeight="ExtraLight" FontFamily="Cascadia Mono ExtraLight" HorizontalContentAlignment="Center"/>
+                    </Border>
+                    <Border MouseEnter="RegEducation_MouseEnter" MouseLeave="RegEducation_MouseLeave" Background="#268D91FF" CornerRadius="0,0,4,0" Margin="112,54,0,0">
+                        <Label Name="LabelHall_4" Content="4 (99 ос.)" MouseLeftButtonDown="HallChange_Click" Padding="0" FontSize="14" Foreground="#64A8BAFF" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="112" Height="31" FontStyle="Normal" FontWeight="ExtraLight" FontFamily="Cascadia Mono ExtraLight" HorizontalContentAlignment="Center"/>
+                    </Border>
+                </Grid>
+                <Grid Margin="61,71,590,286" >
+                    <Label Name="Hall_Label" Content="1" Padding="0" FontSize="25" Foreground="#64A8BAFF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="34" Height="32" FontStyle="Normal" FontWeight="ExtraLight" FontFamily="Cascadia Mono ExtraLight" HorizontalContentAlignment="Center"/>
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                </Grid>
+                <Label Content="Зал:" Padding="0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="10,71,0,0"/>
+                <Grid Margin="149,71,312,286">
+                    <Label Content="Записатись до залу" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="38" FontStyle="Normal" FontWeight="UltraLight" Margin="0,-5,0,0"/>
+                    <Border MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" MouseLeftButtonDown="HallChoose_Click" Name="HallRegister" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Grid Margin="149,123,312,234">
+                    <Label Content="Додати книжку" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="38" FontStyle="Normal" FontWeight="UltraLight" Margin="0,-5,0,0"/>
+                    <Border MouseLeftButtonDown="ProfileBookAdd_Click" MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" Name="ProfileBookAdd" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Label Content="Мої книги:" Padding="0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="173" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="10,123,0,0"/>
+                <Grid x:Name="MyBooks" Margin="10,175,60,64">
+                    
+                </Grid>
+                <Rectangle Name="ProfileScroll_Up" MouseLeftButtonDown="ProfileScroll_Click" MouseEnter="ScrollRectangle_MouseEnter" MouseLeave="ScrollRectangle_MouseLeave" Fill="#7F8D91FF" RenderTransformOrigin="0.5,0.5" Margin="643,224,18,142">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="135"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Grid Margin="401,342,60,15">
+                    <Label Content="Вийти з профілю" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="38" FontStyle="Normal" FontWeight="UltraLight" Margin="0,-5,0,0"/>
+                    <Border MouseEnter="DeleteBook_MouseEnter" MouseLeave="DeleteBook_MouseLeave" Background="#3FFFAB6A" MouseLeftButtonDown="LogOut_Click" Name="ProfileLogOut" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Grid Margin="27,331,612,13">
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,16,21,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,26,21,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,16,11,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,26,11,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF6F7DC6" RadiusX="35.733" RadiusY="35.733" Grid.Row="1" StrokeThickness="2" Fill="#268DF3FF" MouseLeftButtonDown="BackToBtn_Click" MouseEnter="BackBtn_MouseEnter" MouseLeave="BackBtn_MouseLeave"/>
+                </Grid>
+                <Rectangle Name="ProfileScroll_Down" MouseLeftButtonDown="ProfileScroll_Click" MouseEnter="ScrollRectangle_MouseEnter" MouseLeave="ScrollRectangle_MouseLeave" Fill="#7F8D91FF" RenderTransformOrigin="0.5,0.5" Margin="643,267,18,99">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="135"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle Fill="#FF1B1E39" Margin="638,236,13,111">
+                </Rectangle>
+                <Grid Margin="395,123,66,234" Name="DelBookButton">
+                    <Label Content="Видалити книжку" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="38" FontStyle="Normal" FontWeight="UltraLight" Margin="0,-5,0,0"/>
+                    <Border MouseLeftButtonDown="ProfileBookDelete_Click" MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" x:Name="ProfileBookAdd1" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border x:Name="Librarian_Access" CornerRadius="40" Background="#1B1E39" RenderTransformOrigin="0.5,0.5" Margin="-605,595,1091,-291">
+            <Grid>
+                <Grid Margin="93,210,93,38">
+                    <Label Content="Отримати доступ" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="39" FontStyle="Normal" FontWeight="UltraLight"/>
+                    <Border MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" MouseLeftButtonDown="LibrarianAccess_Click" Name="GetLibrarianAccess" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Grid Margin="46,93,41,165">
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                    <TextBox Name="LibrarianPass" Text="" BorderBrush="Transparent" Padding="10,0,0,0" HorizontalAlignment="Center" Height="40" TextWrapping="Wrap" VerticalAlignment="Center" Width="428" Background="Transparent" Foreground="#FF6F7DC6" FontSize="25" FontStyle="Normal" FontStretch="Normal" FontWeight="Light"/>
+                </Grid>
+                <TextBlock TextWrapping="Wrap" Text="*Введіть пароль бібліотекаря, щоб отримати доступ до цього розділу" Padding="0,0,0,0" FontSize="18" Foreground="#66FF8C8C" HorizontalAlignment="Center" VerticalAlignment="Top" Width="378" Height="58" FontStyle="Italic" FontWeight="Thin" Margin="0,147,0,0">
+
+                </TextBlock>
+                <Label Content="Доступ бібліотекаря" Margin="0,10,0,0" Padding="0,0,0,0" FontSize="32" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="378"/>
+            </Grid>
+        </Border>
+        <Border x:Name="Librarian_Page" CornerRadius="40" Background="#1B1E39" RenderTransformOrigin="0.5,0.5" Margin="-1362,-336,1698,616">
+            <Grid>
+                <Label Content="Бібліотекар" Margin="0,18,0,0" Padding="0,0,0,0" FontSize="32" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="217"/>
+                <Grid Margin="56,79,350,175">
+                    <Label Content="Додати книжку" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="39" FontStyle="Normal" FontWeight="UltraLight"/>
+                    <Border MouseLeftButtonDown="LibrarianAddBook_Click" MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Grid Margin="350,79,56,175">
+                    <Label Content="Видалити книжку" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="39" FontStyle="Normal" FontWeight="UltraLight"/>
+                    <Border MouseLeftButtonDown="LibrarianDeleteBook_Click" MouseEnter="DeleteBook_MouseEnter" MouseLeave="DeleteBook_MouseLeave" Background="#3FFFAB6A" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Grid Margin="350,199,56,55">
+                    <Label Content="Видалити користувача" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="238" Height="38" FontStyle="Normal" FontWeight="UltraLight"/>
+                    <Border MouseLeftButtonDown="LibrarianDeleteUser_Click" MouseEnter="DeleteBook_MouseEnter" MouseLeave="DeleteBook_MouseLeave" Background="#3FFFAB6A" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Grid Margin="56,199,350,55">
+                    <Label Content="Закрити доступ" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="39" FontStyle="Normal" FontWeight="UltraLight"/>
+                    <Border MouseLeftButtonDown="DenieAccess_Click" MouseEnter="DeniedAccess_MouseEnter" MouseLeave="DeniedAccess_MouseLeave" Background="#3FF26AFF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border x:Name="Librarian_Data" CornerRadius="40" Background="#1B1E39" RenderTransformOrigin="0.5,0.5" Margin="-1568,140,1904,140">
+            <Grid>
+                <Label Content="Дані про бібліотеку" Margin="0,18,0,0" Padding="0,0,0,0" FontSize="32" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="294"/>
+                <Grid Margin="56,79,56,196">
+                    <Label Content="Відомості про користувачів" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="298" Height="38" FontStyle="Normal" FontWeight="UltraLight"/>
+                    <Border MouseLeftButtonDown="ReadersData_Click" MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Grid Margin="56,146,56,129">
+                    <Label Content="Відомості про книжки" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="298" Height="38" FontStyle="Normal" FontWeight="UltraLight"/>
+                    <Border MouseLeftButtonDown="BooksData_Click" MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Grid Margin="56,213,56,62">
+                    <Label Content="Статистика" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="298" Height="38" FontStyle="Normal" FontWeight="UltraLight"/>
+                    <Border MouseLeftButtonDown="Statistic_Click" MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border x:Name="Readers_Info" CornerRadius="40" Background="#1B1E39" RenderTransformOrigin="0.5,0.5" Margin="0,-373,336,653">
+            <Grid Margin="19,0,-19,0">
+                <Label Content="Відомості про користувачів" Margin="114,18,0,0" Padding="0,0,0,0" FontSize="32" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="412"/>
+                <Label Content="Фільтри пошуку:" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="208" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="10,81,0,0"/>
+                <Grid Margin="209,84,398,206">
+                    <Label Content="Вік" HorizontalContentAlignment="Center" Padding="0,0,0,0" FontSize="23" Foreground="#FF86A9E0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="56" Height="32" FontStyle="Normal" FontWeight="UltraLight"/>
+                    <Border Name="ChangeSearch_Age" MouseLeftButtonDown="ChangeTypeOfSearch_Click" MouseEnter="RegEducation_MouseEnter" MouseLeave="RegEducation_MouseLeave" Background="#26FF71DD" CornerRadius="4" BorderBrush="#3FFF4876" BorderThickness="1,1,1,1"/>
+                </Grid>
+                <Grid Margin="280,84,278,206">
+                    <Label Content="Прізвище" HorizontalContentAlignment="Center" Padding="0,0,0,0" FontSize="23" Foreground="#FF86A9E0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="106" Height="32" FontStyle="Normal" FontWeight="UltraLight"/>
+                    <Border Name="ChangeSearch_Surname" MouseLeftButtonDown="ChangeTypeOfSearch_Click" MouseEnter="RegEducation_MouseEnter" MouseLeave="RegEducation_MouseLeave" Background="#268D91FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Grid Margin="401,84,58,206">
+                    <Label Content="Читацький квиток" HorizontalContentAlignment="Center" Padding="0,0,0,0" FontSize="23" Foreground="#FF86A9E0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="205" Height="32" FontStyle="Normal" FontWeight="UltraLight"/>
+                    <Border Name="ChangeSearch_Ticket" MouseLeftButtonDown="ChangeTypeOfSearch_Click" MouseEnter="RegEducation_MouseEnter" MouseLeave="RegEducation_MouseLeave" Background="#268D91FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Grid x:Name="AgeSearch" Margin="171,130,38,149" Visibility="Visible">
+                    <Label Content="Від:" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="40" Height="41" FontStyle="Normal" FontWeight="Normal"/>
+                    <Grid Margin="51,0,352,0">
+                        <Border Background="#268D91FF" CornerRadius="4"/>
+                        <TextBox Name="AgeSearch_MinAge" Text="10" BorderBrush="Transparent" Padding="0,0,0,0" HorizontalContentAlignment="Center" Height="40" TextWrapping="Wrap" VerticalAlignment="Center" Background="Transparent" Foreground="#FF6F7DC6" FontSize="25" FontStyle="Normal" FontStretch="Normal" FontWeight="Light"/>
+                    </Grid>
+                    <Grid Margin="187,0,216,0">
+                        <Border Background="#268D91FF" CornerRadius="4"/>
+                        <TextBox Name="AgeSearch_MaxAge" Text="30" BorderBrush="Transparent" Padding="0,0,0,0" HorizontalContentAlignment="Center" Height="40" TextWrapping="Wrap" VerticalAlignment="Center" Background="Transparent" Foreground="#FF6F7DC6" FontSize="25" FontStyle="Normal" FontStretch="Normal" FontWeight="Light"/>
+                    </Grid>
+                    <Label Content="До:" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="42" Height="41" FontStyle="Normal" FontWeight="Normal" Margin="140,0,0,0"/>
+                </Grid>
+                <Grid x:Name="SurnameSearch" Margin="171,130,38,149" Visibility="Hidden">
+                    <Label Content="Введіть прізвище:" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="214" Height="41" FontStyle="Normal" FontWeight="Normal"/>
+                    <Grid Margin="214,0,10,0">
+                        <Border Background="#268D91FF" CornerRadius="4" Margin="0,0,10,0"/>
+                        <TextBox Name="SurnameSearch_TextBox" Text="Іванов" BorderBrush="Transparent" Padding="5,0,0,0" Height="40" TextWrapping="Wrap" VerticalAlignment="Center" Background="Transparent" Foreground="#FF6F7DC6" FontSize="25" FontStyle="Normal" FontStretch="Normal" FontWeight="Light" Margin="0,0,10,0"/>
+                    </Grid>
+                </Grid>
+                <Grid x:Name="TicketSearch" Margin="171,130,38,149" Visibility="Hidden">
+                    <Label Content="Введіть квиток:" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="184" Height="41" FontStyle="Normal" FontWeight="Normal"/>
+                    <Grid Margin="189,0,10,0">
+                        <Border Background="#268D91FF" CornerRadius="4" Margin="0,0,10,0"/>
+                        <TextBox Name="TicketSearch_TextBox" Text="123" BorderBrush="Transparent" Padding="5,0,0,0" Height="40" TextWrapping="Wrap" VerticalAlignment="Center" Background="Transparent" Foreground="#FF6F7DC6" FontSize="25" FontStyle="Normal" FontStretch="Normal" FontWeight="Light" Margin="0,0,10,0"/>
+                    </Grid>
+                </Grid>
+                <Grid Margin="10,130,498,149">
+                    <Label Content="Знайти!" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="39" FontStyle="Normal" FontWeight="UltraLight"/>
+                    <Border MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" MouseLeftButtonDown="FoundUsers_Click" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Grid x:Name="Searched_Users" Margin="166,182,58,10">
+
+                </Grid>
+                <Rectangle x:Name="UserScroll_Down" MouseLeftButtonDown="UserScroll_Click" MouseEnter="ScrollRectangle_MouseEnter" MouseLeave="ScrollRectangle_MouseLeave" Fill="#7F8D91FF" RenderTransformOrigin="0.5,0.5" Margin="139,256,507,46">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="135"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle x:Name="UserScroll_Up" MouseLeftButtonDown="UserScroll_Click" MouseEnter="ScrollRectangle_MouseEnter" MouseLeave="ScrollRectangle_MouseLeave" Fill="#7F8D91FF" RenderTransformOrigin="0.5,0.5" Margin="139,227,507,75">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="135"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle Fill="#FF1B1E39" Margin="135,236,503,55"/>
+                <Grid Margin="21,259,597,15">
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,16,21,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,26,21,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,16,11,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,26,11,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF6F7DC6" RadiusX="35.733" RadiusY="35.733" Grid.Row="1" StrokeThickness="2" Fill="#268DF3FF" MouseLeftButtonDown="BackToBtn_Click" MouseEnter="BackBtn_MouseEnter" MouseLeave="BackBtn_MouseLeave"/>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border x:Name="Books_Info" CornerRadius="40" Background="#1B1E39" RenderTransformOrigin="0.5,0.5" Margin="1060,302,-724,-22">
+            <Grid>
+                <Grid Margin="254,119,254,160">
+                    <Label Content="Знайти!" Padding="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="39" FontStyle="Normal" FontWeight="UltraLight"/>
+                    <Border MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" MouseLeftButtonDown="BookSearch_Click" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Label Content="Відомості про книги" Margin="0,18,0,0" Padding="0,0,0,0" FontSize="32" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="338"/>
+                <Grid Margin="42,70,349,207">
+                    <Border Background="#268DD6FF" CornerRadius="4"/>
+                    <Label Name="DataBookSearchT_Label" Content="Шукати за назвою..." Padding="0,0,0,0" FontSize="21" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="261" Height="38" FontStyle="Italic" FontWeight="ExtraLight" Margin="10,0,0,0"/>
+                    <TextBox TextChanged="BookDataSearch_TextChanged" Name="DataSearchTitle_TextBox" Text="" BorderBrush="Transparent" Padding="10,0,0,0" HorizontalAlignment="Center" Height="52" TextWrapping="Wrap" VerticalAlignment="Center" Width="272" Background="Transparent" Foreground="#FF6F7DC6" FontSize="25" FontStyle="Normal" FontStretch="Normal" FontWeight="Light"/>
+                </Grid>
+                <Grid Margin="351,70,42,207">
+                    <Border Background="#268DD6FF" CornerRadius="4"/>
+                    <Label Name="DataBookSearchS_Label" Content="Шукати за шифром..." Padding="0,0,0,0" FontSize="21" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="318" Height="38" FontStyle="Italic" FontWeight="ExtraLight" Margin="10,0,0,0"/>
+                    <TextBox TextChanged="BookDataSearch_TextChanged" Name="DataSearchSiphre_TextBox" Text="" BorderBrush="Transparent" Padding="10,0,0,0" HorizontalAlignment="Center" Height="52" TextWrapping="Wrap" VerticalAlignment="Center" Width="270" Background="Transparent" Foreground="#FF6F7DC6" FontSize="25" FontStyle="Normal" FontStretch="Normal" FontWeight="Light"/>
+                </Grid>
+                <Grid Margin="112,165,112,32" x:Name="SearchedBooks">
+
+                </Grid>
+                <Grid Margin="21,259,597,15">
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,16,21,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,26,21,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,16,11,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,26,11,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF6F7DC6" RadiusX="35.733" RadiusY="35.733" Grid.Row="1" StrokeThickness="2" Fill="#268DF3FF" MouseLeftButtonDown="BackToBtn_Click" MouseEnter="BackBtn_MouseEnter" MouseLeave="BackBtn_MouseLeave"/>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border x:Name="Book_About" CornerRadius="40" Background="#1B1E39" RenderTransformOrigin="0.5,0.5" Margin="1082,25,-610,342">
+            <Grid>
+                <Label Name="SBA_Title" Content="Путівник по Галактиці для космотуристів" Margin="0,18,0,0" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="472" Height="48"/>
+                <Label Content="Автор:" Padding="0,0,0,0" FontSize="21" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="63" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="42,70,0,0"/>
+                <Label Name="SBA_Autor" Content="Прізвище автора" Padding="0,0,0,0" FontSize="21" Foreground="#FF86A9E0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="194" Height="33" FontStyle="Normal" FontWeight="UltraLight" Margin="110,70,0,0"/>
+                <Label Content="Рік виходу:" Padding="0,0,0,0" FontSize="21" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="109" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="42,108,0,0"/>
+                <Label Name="SBA_Year" Content="рік виходу" Padding="0,0,0,0" FontSize="21" Foreground="#FF86A9E0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" Height="33" FontStyle="Normal" FontWeight="UltraLight" Margin="158,108,0,0"/>
+                <Label Content="Зал книги:" Padding="0,0,0,0" FontSize="21" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="309,109,0,0"/>
+                <Label Name="SBA_Hall" Content="номер залу" Padding="0,0,0,0" FontSize="21" Foreground="#FF86A9E0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="114" Height="33" FontStyle="Normal" FontWeight="UltraLight" Margin="419,108,0,0"/>
+                <Label Content="Лишилось книг:" Padding="0,0,0,0" FontSize="21" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Height="34" FontStyle="Normal" FontWeight="Normal" Margin="42,146,0,0"/>
+                <Label Content="Усього книг:" Padding="0,0,0,0" FontSize="21" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="121" Height="32" FontStyle="Normal" FontWeight="Normal" Margin="309,147,0,0"/>
+                <Label Name="SBA_Left" Content="лишилось" Padding="0,0,0,0" FontSize="21" Foreground="#FF86A9E0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="84" Height="32" FontStyle="Normal" FontWeight="UltraLight" Margin="199,146,0,0"/>
+                <Label Name="SBA_Amount" Content="усього" Padding="0,0,0,0" FontSize="21" Foreground="#FF86A9E0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Height="32" FontStyle="Normal" FontWeight="UltraLight" Margin="435,147,0,0"/>
+                <Grid Margin="42,177,440,10">
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,16,21,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,26,21,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,16,11,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,26,11,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF6F7DC6" RadiusX="35.733" RadiusY="35.733" Grid.Row="1" StrokeThickness="2" Fill="#268DF3FF" MouseLeftButtonDown="BackToBtn_Click" MouseEnter="BackBtn_MouseEnter" MouseLeave="BackBtn_MouseLeave"/>
+                </Grid>
+                <Label Content="Шифр:" Padding="0,0,0,0" FontSize="21" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="84" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="309,71,0,0"/>
+                <Label x:Name="SBA_Cipher" Content="123" Padding="0,0,0,0" FontSize="21" Foreground="#FF86A9E0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="40" Height="33" FontStyle="Normal" FontWeight="UltraLight" Margin="419,70,0,0"/>
+            </Grid>
+        </Border>
+        <Border x:Name="RegMessageBox" CornerRadius="40" Background="#1B1E39" RenderTransformOrigin="0.5,0.5" Margin="1232,722,-724,-303">
+            <Grid>
+                <Label Content="Успішно" Margin="0,18,0,0" Padding="0,0,0,0" FontSize="32" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="424" Height="67"/>
+                <Border MouseLeftButtonDown="OK_Click" MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876" Margin="155,90,155,21">
+                    <Label Content="OK" Padding="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="34" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" Width="106" Height="41" FontStyle="Normal" FontWeight="Normal" Margin="0,12,0,0"/>
+
+                </Border>
+
+            </Grid>
+        </Border>
+        <Border Name="DeleteUser" CornerRadius="40" Background="#1B1E39" RenderTransformOrigin="0.5,0.5" Margin="1522,-336,-1014,653">
+            <Grid>
+                <Grid Margin="55,204,391,33">
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,16,21,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,26,21,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,16,11,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,26,11,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF6F7DC6" RadiusX="35.733" RadiusY="35.733" Grid.Row="1" StrokeThickness="2" Fill="#268DF3FF" MouseLeftButtonDown="BackToBtn_Click" MouseEnter="BackBtn_MouseEnter" MouseLeave="BackBtn_MouseLeave"/>
+                </Grid>
+                <Grid Margin="34,97,34,141">
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                    <Label Name="UserToDelete" Content="За паспортом..." Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="318" Height="38" FontStyle="Italic" FontWeight="ExtraLight" Margin="10,0,0,0"/>
+                    <TextBox TextChanged="DelUserSearch_TextChanged" Name="DelUserSearch" Text="" BorderBrush="Transparent" Padding="10,1,0,0" HorizontalAlignment="Left" Height="38" TextWrapping="Wrap" VerticalAlignment="Top" Width="335" Background="Transparent" Foreground="#FF6F7DC6" FontSize="25" FontStyle="Normal" FontStretch="Normal" FontWeight="Light"/>
+                </Grid>
+                <Label Content="Видалити користувача" Margin="0,18,0,0" Padding="0,0,0,0" FontSize="32" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="424" Height="70"/>
+                <Border MouseLeftButtonDown="DelUser_Click" MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876" Margin="155,193,155,21">
+                    <Label Content="Видалити" Padding="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="34" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" Width="162" Height="41" FontStyle="Normal" FontWeight="Normal" Margin="0,12,0,0"/>
+
+                </Border>
+
+            </Grid>
+        </Border>
+        <Border x:Name="DeleteBook" CornerRadius="40" Background="#1B1E39" RenderTransformOrigin="0.5,0.5" Margin="0,642,508,-324">
+            <Grid>
+                <Grid Margin="55,204,391,33">
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,16,21,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,26,21,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,16,11,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,26,11,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF6F7DC6" RadiusX="35.733" RadiusY="35.733" Grid.Row="1" StrokeThickness="2" Fill="#268DF3FF" MouseLeftButtonDown="BackToBtn_Click" MouseEnter="BackBtn_MouseEnter" MouseLeave="BackBtn_MouseLeave"/>
+                </Grid>
+                <Grid Margin="34,97,34,141">
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                    <Label x:Name="BookToDelete" Content="За шифром..." Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Center" Width="318" Height="38" FontStyle="Italic" FontWeight="ExtraLight" Margin="10,0,0,0"/>
+                    <TextBox TextChanged="DelBookSearch_TextChanged" x:Name="DelBookSearch" Text="" BorderBrush="Transparent" Padding="10,1,0,0" HorizontalAlignment="Left" Height="38" TextWrapping="Wrap" VerticalAlignment="Top" Width="335" Background="Transparent" Foreground="#FF6F7DC6" FontSize="25" FontStyle="Normal" FontStretch="Normal" FontWeight="Light"/>
+                </Grid>
+                <Label Content="Видалити книжку" Margin="0,18,0,0" Padding="0,0,0,0" FontSize="32" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="424" Height="70"/>
+                <Border MouseLeftButtonDown="DelBook_Click" MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876" Margin="155,193,155,21">
+                    <Label Content="Видалити" Padding="0,0,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="34" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" Width="162" Height="41" FontStyle="Normal" FontWeight="Normal" Margin="0,12,0,0"/>
+                </Border>
+
+            </Grid>
+        </Border>
+        <Border x:Name="BookAdd_Page" CornerRadius="40" Background="#1B1E39" RenderTransformOrigin="0.5,0.5" Margin="-234,956,548,-623">
+            <Grid Margin="0,0,10,0">
+                <Label Content="Додати книжку" Margin="0,10,0,0" Padding="0,0,0,0" FontSize="32" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="258"/>
+                <Grid Margin="91,74,41,160">
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                    <TextBox x:Name="AddBook_Title" Text="" BorderBrush="Transparent" Padding="10,5,0,0" HorizontalAlignment="Center" Height="46" TextWrapping="Wrap" VerticalAlignment="Center" Width="557" Background="Transparent" Foreground="#FF6F7DC6" FontSize="22" FontStyle="Normal" FontStretch="Normal" FontWeight="Light"/>
+                </Grid>
+                <Grid Margin="222,120,41,115">
+                    <Border Background="#268D91FF" CornerRadius="4"/>
+                    <TextBox x:Name="AddBook_Surname" Text="" BorderBrush="Transparent" Padding="10,5,0,0" HorizontalAlignment="Center" Height="44" TextWrapping="Wrap" VerticalAlignment="Center" Width="426" Background="Transparent" Foreground="#FF6F7DC6" FontSize="22" FontStyle="Normal" FontStretch="Normal" FontWeight="Light"/>
+                </Grid>
+                <Grid Margin="148,166,465,69">
+                    <Border Background="#268D91FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                    <TextBox HorizontalContentAlignment="Center" x:Name="AddBook_Year" TextChanged="RegBD_TextChanged" Text="" Background="Transparent" Padding="1,2,0,0" FontSize="25" Foreground="#64A8BAFF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="69" Height="32" FontStyle="Normal" FontWeight="ExtraLight" FontFamily="Cascadia Mono ExtraLight" BorderThickness="0,0,0,0"/>
+                </Grid>
+                <Grid Margin="351,166,287,69">
+                    <Border Background="#268D91FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                    <TextBox HorizontalContentAlignment="Center" x:Name="AddBook_Amount" TextChanged="RegBD_TextChanged" Text="" Background="Transparent" Padding="1,0,0,0" FontSize="25" Foreground="#64A8BAFF" HorizontalAlignment="Center" VerticalAlignment="Center" Width="38" Height="28" FontStyle="Normal" FontWeight="ExtraLight" FontFamily="Cascadia Mono ExtraLight" BorderThickness="0,0,0,0"/>
+                </Grid>
+                <Label Content="Назва:" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="10,71,0,0"/>
+                <Label Content="Прізвище автора:" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="207" Height="38" FontStyle="Normal" FontWeight="Normal" Margin="10,117,0,0"/>
+                <Label Content="Рік виходу:" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="123" Height="38" FontStyle="Normal" FontWeight="Normal" Margin="10,163,0,0"/>
+                <Label Content="Зал:" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="58" Height="38" FontStyle="Normal" FontWeight="Normal" Margin="428,163,0,0"/>
+                <Label Content="Кількість:" Padding="0,0,0,0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Left" VerticalAlignment="Top" Width="104" Height="38" FontStyle="Normal" FontWeight="Normal" Margin="242,163,0,0"/>
+                <Grid Margin="400,211,85,10">
+                    <Label Content="Додати книжку" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Padding="0,0,0,0" FontSize="23" Foreground="#FFBEC8FF" HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" Height="55" FontStyle="Normal" FontWeight="UltraLight" Margin="0,-5,0,0"/>
+                    <Border MouseLeftButtonDown="AddBook_Click" MouseEnter="RegFinish_MouseEnter" MouseLeave="RegFinish_MouseLeave" x:Name="RegFinish1" Background="#3F6A70FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                </Grid>
+                <Grid Margin="62,211,568,10">
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,16,21,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,26,21,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,16,11,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,26,11,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF6F7DC6" RadiusX="35.733" RadiusY="35.733" Grid.Row="1" StrokeThickness="2" Fill="#268DF3FF" MouseLeftButtonDown="BackToBtn_Click" MouseEnter="BackBtn_MouseEnter" MouseLeave="BackBtn_MouseLeave"/>
+                </Grid>
+                <Grid Margin="490,166,160,69">
+                    <Border Background="#268D91FF" CornerRadius="4" BorderBrush="#3FFF4876"/>
+                    <TextBox x:Name="AddBook_Hall" TextChanged="RegBD_TextChanged" Background="Transparent" Padding="1,0,0,0" FontSize="25" Foreground="#64A8BAFF" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Width="24" Height="28" FontStyle="Normal" FontWeight="ExtraLight" FontFamily="Cascadia Mono ExtraLight" BorderThickness="0,0,0,0"/>
+                </Grid>
+            </Grid>
+        </Border>
+        <Border x:Name="Statistic" CornerRadius="40" Background="#1B1E39" RenderTransformOrigin="0.5,0.5" Margin="-1447,595,1763,-385">
+            <Grid>
+                <Label Content="Статистика" Margin="0,18,0,0" Padding="0,0,0,0" FontSize="32" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="294" Height="54"/>
+                <Label HorizontalContentAlignment="Center" Content="Користувачі за рівнями освіти:" Padding="0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" Width="390" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="0,71,0,0"/>
+                <Label Content="Початковий:" Padding="0" FontSize="25" Foreground="#FF81ADCF" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="10,109,0,0"/>
+                <Label Content="Середній:" Padding="0" FontSize="25" Foreground="#FF81ADCF" HorizontalAlignment="Left" VerticalAlignment="Top" Width="118" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="288,109,0,0"/>
+                <Label Content="Високий:" Padding="0" FontSize="25" Foreground="#FF81ADCF" HorizontalAlignment="Left" VerticalAlignment="Top" Width="108" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="503,109,0,0"/>
+                <Label Name="PercentOfJunEdu" Content="12" Padding="0" FontSize="22" Foreground="#FF81CFC7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Height="30" FontStyle="Normal" FontWeight="Normal" Margin="166,112,0,0"/>
+                <Label Content="%" Padding="0" FontSize="22" Foreground="#FF81CFC7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Height="30" FontStyle="Normal" FontWeight="Normal" Margin="194,112,0,0"/>
+                <Border Background="#268D91FF" CornerRadius="4" Margin="163,111,491,248"/>
+                <Label Name="PercentOfMidEdu" Content="12" Padding="0" FontSize="22" Foreground="#FF81CFC7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Height="30" FontStyle="Normal" FontWeight="Normal" Margin="408,112,0,0"/>
+                <Label Content="%" Padding="0" FontSize="22" Foreground="#FF81CFC7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Height="30" FontStyle="Normal" FontWeight="Normal" Margin="437,112,0,0"/>
+                <Border Background="#268D91FF" CornerRadius="4" Margin="406,111,248,248"/>
+                <Label Name="PercentOfHightEdu" Content="12" Padding="0" FontSize="22" Foreground="#FF81CFC7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Height="30" FontStyle="Normal" FontWeight="Normal" Margin="613,112,0,0"/>
+                <Label Content="%" Padding="0" FontSize="22" Foreground="#FF81CFC7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="28" Height="30" FontStyle="Normal" FontWeight="Normal" Margin="642,112,0,0"/>
+                <Border Background="#268D91FF" CornerRadius="4" Margin="611,111,43,248"/>
+                <Label HorizontalContentAlignment="Center" Content="Користувачі, що взяли книжку:" Padding="0" FontSize="25" Foreground="#6F7DC6" HorizontalAlignment="Center" VerticalAlignment="Top" Width="390" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="0,147,0,0"/>
+                <Label Content="Більше 30 днів тому:" Padding="0" FontSize="25" Foreground="#FF81ADCF" HorizontalAlignment="Left" VerticalAlignment="Top" Width="234" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="10,180,0,0"/>
+                <Label Content="Кількість якої меньша від:" Padding="0" FontSize="25" Foreground="#FF81ADCF" HorizontalAlignment="Left" VerticalAlignment="Top" Width="299" Height="33" FontStyle="Normal" FontWeight="Normal" Margin="312,180,0,0"/>
+                <Border Background="#268D91FF" CornerRadius="4" Margin="616,182,38,177"/>
+                <TextBox Name="UserWRB_TB" TextChanged="UserWRB_TextChanged" Text="0" HorizontalContentAlignment="Center" Padding="0" FontSize="22" Foreground="#FF81CFC7" HorizontalAlignment="Left" VerticalAlignment="Top" Width="30" Height="31" FontStyle="Normal" FontWeight="Normal" Margin="616,182,0,0" Background="Transparent" BorderBrush="#00ABADB3"/>
+                <Grid Margin="0,213,343,0" x:Name="UsersDidntReturn">
+
+                </Grid>
+                <Grid Margin="342,213,0,0" x:Name="UsersWRBGrid">
+                    <Label>test</Label>
+                </Grid>
+                <Rectangle Name="UserMonthScroll_Up" MouseLeftButtonDown="UserMonthScroll_Click"  MouseEnter="ScrollRectangle_MouseEnter" MouseLeave="ScrollRectangle_MouseLeave" Fill="#7F8D91FF" RenderTransformOrigin="0.5,0.5" Margin="307,270,357,100">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="135"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Grid Margin="40,22,598,322">
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,16,21,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="7,26,21,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,16,11,26">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="-45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF5431A0" Fill="#FF6F7DC6" StrokeThickness="0" RenderTransformOrigin="0.5,0.5" Margin="17,26,11,16">
+                        <Rectangle.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="45"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Rectangle.RenderTransform>
+                    </Rectangle>
+                    <Rectangle Stroke="#FF6F7DC6" RadiusX="35.733" RadiusY="35.733" Grid.Row="1" StrokeThickness="2" Fill="#268DF3FF" MouseLeftButtonDown="BackToBtn_Click" MouseEnter="BackBtn_MouseEnter" MouseLeave="BackBtn_MouseLeave"/>
+                </Grid>
+                <Rectangle MouseLeftButtonDown="UserMonthScroll_Click" x:Name="UserMonthScroll_Down" MouseEnter="ScrollRectangle_MouseEnter" MouseLeave="ScrollRectangle_MouseLeave" Fill="#7F8D91FF" RenderTransformOrigin="0.5,0.5" Margin="307,300,357,70">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="135"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle Fill="#FF1B1E39" Margin="303,280,353,80"/>
+                <Rectangle x:Name="UserWRBScroll_UP" MouseLeftButtonDown="UserWRBScroll_Click" MouseEnter="ScrollRectangle_MouseEnter" MouseLeave="ScrollRectangle_MouseLeave" Fill="#7F8D91FF" RenderTransformOrigin="0.5,0.5" Margin="650,270,14,100">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="135"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle x:Name="UserWRBScroll_Down" MouseLeftButtonDown="UserWRBScroll_Click" MouseEnter="ScrollRectangle_MouseEnter" MouseLeave="ScrollRectangle_MouseLeave" Fill="#7F8D91FF" RenderTransformOrigin="0.5,0.5" Margin="650,300,14,70">
+                    <Rectangle.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="135"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+                <Rectangle Fill="#FF1B1E39" Margin="646,280,10,80"/>
+
+
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
